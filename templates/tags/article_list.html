@@ -1,0 +1,18 @@
+{% load static thumbnail %}
+{% for item in article_list|slice:":3" %}
+  <!--Row Start-->
+  <li class="news">
+      <div class="small-thumb">
+        {% thumbnail item.image "80x80" crop="center" as im %}
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt={{item}}>
+        {% endthumbnail %}
+      </div>
+      <div class="news-txt">
+          <ul class="meta-info">
+              <li>{{item.born}}</li>
+          </ul>
+          <h6> <a href="{% url 'article' slug=item.slug %}">{{item}}</a> </h6>
+      </div>
+  </li>
+  <!--Row End-->
+  {% endfor %}

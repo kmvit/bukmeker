@@ -60,53 +60,7 @@
 
                         </div>
 
-                        <!--Sidebar Start-->
-                        <div class="col-md-3">
-                            <div class="sidebar">
-
-                                <!--Widget Start-->
-                                <div class="widget">
-                                    <div class="text-widget"> <img src="{% static 'images/txt-img.jpg'%}" alt="о нас">
-                                        <h3>О нас</h3>
-                                        <p> Мы пишем реальные прогнозы. Ударим прогнозвми по букмекерам . </p>
-                                        <a class="detail-btn" href="#">Подробнее</a> </div>
-                                </div>
-                                <!--Widget End-->
-
-
-                                <!--Widget Start-->
-                                <div class="widget">
-                                    <h3>Последние прогнозы</h3>
-                                    <ul class="small-grid">
-                                      {% for item in forecast_list %}
-                                        <!--Row Start-->
-                                        <li class="news">
-                                            <div class="small-thumb">
-                                              {% thumbnail item.image "80x80" crop="center" as im %}
-                                                  <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt={{item}}>
-                                              {% endthumbnail %}
-                                            </div>
-                                            <div class="news-txt">
-                                                <ul class="meta-info">
-                                                    <li>{{item.born}}</li>
-                                                </ul>
-                                                <h6> <a href="{% url 'forecast' slug=item.slug %}">{{item}}</a> </h6>
-                                            </div>
-                                        </li>
-                                        <!--Row End-->
-                                        {% endfor %}
-
-
-                                    </ul>
-                                </div>
-
-                                <!--Widget End-->
-
-
-                              
-                            </div>
-                        </div>
-                        <!--Sidebar End-->
+                        {% include 'include/sidebar.html' %}
 
                     </div>
                 </div>

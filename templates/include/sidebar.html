@@ -1,0 +1,30 @@
+{% load static thumbnail my_tags %}
+<!--Sidebar Start-->
+<div class="col-md-3">
+    <div class="sidebar">
+
+        <!--Widget Start-->
+        <div class="widget">
+            <div class="text-widget"> <img src="{% static 'images/txt-img.jpg'%}" alt="о нас">
+                <h3>О нас</h3>
+                <p> Мы пишем реальные прогнозы. Ударим прогнозвми по букмекерам . </p>
+            </div>
+        </div>
+        <!--Widget End-->
+
+
+        <!--Widget Start-->
+        <div class="widget">
+            <h3>Интересные статьи</h3>
+            <ul class="small-grid">
+              {% article_list %}
+            </ul>
+        </div>
+
+        <!--Widget End-->
+
+
+
+    </div>
+</div>
+<!--Sidebar End-->
