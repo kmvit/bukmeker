@@ -1,0 +1,49 @@
+{% load static %}
+<header class="header color-2" id="header">
+    <div class="logo-nav">
+        <div class="container-fluid">
+            <div class="row">
+                <!--Logo Start-->
+                <div class="col-md-3 nop">
+                    <div class="logo">
+                        <a href="/">Bitterprof.ru</a>
+                    </div>
+                </div>
+                <!--Logo End-->
+
+                <!--Nav Start-->
+                <div class="col-md-9">
+                    <div class="header-navbar">
+                        {% include 'include/nav.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-action-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="newsticker" id="newsticker">
+                        <div class="bn-title"><strong>Главные новости:</strong><span></span></div>
+                        <ul>
+                            <li><a href="#">Узнавайте прогнозы на игры первыми...</a></li>
+                            <li><a href="#">Читайти статьи о спорте...</a></li>
+                            <li><a href="#">Хотите знать историю клубов?... </a></li>
+                        </ul>
+                        <div class="bn-navi"> <span></span> <span></span> </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <ul class="acbar-right">
+                        <li class="social"> <a href="#" class="fb"><i class="fa fa-facebook"></i></a> <a href="#" class="tw"><i class="fa fa-twitter"></i></a> <a href="#" class="ytp"><i class="fa fa-youtube-play"></i></a> <a href="#" class="vim"><i class="fa fa-vimeo"></i></a> <a href="#" class="gp"><i class="fa fa-google-plus"></i></a> </li>
+
+                        <li>
+                            <a href="#" class="login-btn"> <i class="fa fa-user"></i> Войти</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

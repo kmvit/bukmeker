@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static thumbnail %}
+{% block bread %}
+<!--Inner Banner Start-->
+<div class="inner-banner">
+    <h1>{{object}}</h1>
+    <p>Complete range of products for all your needs</p>
+</div>
+<div class="fl-breadcrumps">
+    <div class="container">
+        <ul class="pull-left">
+            <li> <a href="/">Главная</a> </li>
+            <li> <a href="{% url 'forecasts' %}">Прогнозы</a> </li>
+            <li> <a href="{% url 'forecast' slug=object.slug %}">{{object}}</a> </li>
+        </ul>
+        <a class="pull-right" href="index.html">На главную <i class="fa fa-caret-right"></i></a>
+    </div>
+</div>
+<!--Inner Banner End-->
+{% endblock %}
+{% block content %}
+<div class="page-wrapper">
+
+    <!-- Blog Full Start -->
+    <div class="blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+
+                    <!--Blog Post Start-->
+                    <div class="blog-post">
+                        <h3><a href="#">{{object}}</a></h3>
+                        <div class="blog-content">
+                            {% if image %}
+                            <img src="{{object.image.url}}" width="100%">
+                            {% endif %}
+                            {{object.body|safe}}
+                        </div>
+                        <div class="game">
+                          <h3>{{object.game}}</h3>
+                          <p>{{object.coefficient}}</p>
+                        </div>
+                    </div>
+                    <!--Blog Post End-->
+
+                    <table width="100%">
+                        <tr>
+                            <td width="50%">
+                                <a href="{% if user.is_authenticated %}{% url 'add_like' slug=object.slug %}{% else %}/admin/login/?next=/admin/{% endif %}"> Нравится</a>
+                                <span class="lead">{{ object.like }}</span>
+
+                                <a href="{% if user.is_authenticated %}{% url 'add_dislike' slug=object.slug %}{% else %}/admin/login/?next=/admin/{% endif %}">Не нравится</a>
+                                <span class="lead">{{ object.dislike }}</span>
+                            </td>
+                        </tr>
+                    </table>
+                    Рейтинг пользователя <a href="#">{{user}}</a>: {{user.author.user_raking}}
+                    {{user_list}}
+
+
+
+                </div>
+
+                <!--Sidebar Start-->
+                <div class="col-md-3">
+                    <div class="sidebar">
+
+                        <!--Widget Start-->
+                        <div class="widget">
+                            <div class="text-widget"> <img src="{% static 'images/txt-img.jpg'%}" alt="о нас">
+                                <h3>О нас</h3>
+                                <p> Мы пишем реальные прогнозы. Ударим прогнозвми по букмекерам . </p>
+                                <a class="detail-btn" href="#">Подробнее</a> </div>
+                        </div>
+                        <!--Widget End-->
+
+
+                        <!--Widget Start-->
+                        <div class="widget">
+                            <h3>Интересные статьи</h3>
+                            <ul class="small-grid">
+                              {% for item in article_list %}
+                                <!--Row Start-->
+                                <li class="news">
+                                    <div class="small-thumb">
+                                      {% thumbnail item.image "80x80" crop="center" as im %}
+                                          <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt={{item}}>
+                                      {% endthumbnail %}
+                                    </div>
+                                    <div class="news-txt">
+                                        <ul class="meta-info">
+                                            <li>{{item.born}}</li>
+                                        </ul>
+                                        <h6> <a href="{% url 'article' slug=item.slug %}">{{item}}</a> </h6>
+                                    </div>
+                                </li>
+                                <!--Row End-->
+                                {% endfor %}
+
+
+                            </ul>
+                        </div>
+
+                        <!--Widget End-->
+
+
+                        <div class="widget"> <img src="{% static 'images/sidebanner.jpg' %}" alt="banner"> </div>
+                    </div>
+                </div>
+                <!--Sidebar End-->
+
+            </div>
+        </div>
+    </div>
+    <!-- Blog Full End -->
+
+</div>
+
+{% endblock %}

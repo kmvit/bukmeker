@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static thumbnail %}
+{% block title %}
+{% endblock %}
+{% block content %}
+<!--Featured News Area Start-->
+<section class="news-section-wrapper">
+    <div class="featured-news-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 p3r">
+                    <div id="featured-slider" class="owl-carousel owl-theme">
+                        {% for item in article_list_premium %}
+                        <div class="item">
+                            <div class="fnews-thumb">
+                                <div class="fnews-txt"> <span class="gtag">{{item.category}}</span>
+                                    <h3> <a href="{% url 'article' slug=item.slug %}">{{item.title}}</a> </h3>
+                                </div>
+                                <img src="{{item.image.url}}" alt="{{item.title}}">
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% for item in article_list|slice:":4" %}
+                <div class="col-md-3 col-sm-6 p3">
+
+                    <div class="fnews-thumb mb6">
+                        <div class="fnews-txt"> <span class="gtag c3">{{item.category}}</span>
+                            <h3> <a href="{% url 'article' slug=item.slug %}">{{item.title|slice:":30"}}...</a> </h3>
+                        </div>
+                        <img src="{{item.image.url}}" alt="{{item.title}}"> </div>
+
+                </div>
+                  {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Featured News Area End-->
+
+<!--League Schedule Slider Start-->
+
+<section class="news-section-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="section-title"> Интересные матчи </h2>
+            </div>
+            <div class="col-md-12">
+                <div id="ls-slider" class="owl-carousel owl-theme">
+                    {% for item in game_list %}
+                    <!--LS Box Start-->
+                    <div class="item">
+                        <div class="schedule-box">
+                            <div class="sdate"> <strong>{{item.game_date|date:"d"}}</strong> {{item.game_date|date:"M"}}</div>
+                            <div class="steams">
+                                <div class="matches"> <strong class="count">{{item.score}}</strong> <strong class="win"></strong> </div>
+                                <div class="teams-vs"> <strong class="t1"> {{item.command_a|slice:":3"}}</strong> <strong class="vs">vs</strong> <strong class="t2">{{item.command_b|slice:":3"}} </strong> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--LS Box End-->
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--League Schedule Slider End-->
+
+<!--Tab post Grid Start-->
+
+<div class="news-section-wrapper newslist-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2 class="section-title"> Новые прогнозы на игры </h2>
+                {% for item in forecast_list %}
+                <!-- News List Start -->
+                <div class="row">
+                    <div class="news-block ">
+                        <div class="col-md-5 col-sm-5">
+                            <div class="news-thumb"> <a href="{% url 'forecast' slug=item.slug %}"><i class="fa fa-link"></i></a> {% if item.image %}<img src="{{item.image.url}}" alt="{{item}}">{% else %}<img src="{% static 'images/nlist-img4.jpg' %}" alt="{{item}}">{% endif %} </div>
+                        </div>
+                        <div class="col-md-7 col-sm-7">
+                            <div class="news-txt">
+                                <ul class="meta-info">
+                                    <li>Составлен <a>{{item.author}}</a></li>
+                                    <li>{{item.born}}</li>
+                                </ul>
+                                <h4> <a href="{% url 'forecast' slug=item.slug %}"> {{item}}</a></h4>
+                                <p>{{item.content|slice:":300"}} </p>
+                                <a class="rm" href="{% url 'forecast' slug=item.slug %}"> смотреть </a> </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- News List End -->
+                {% endfor %}
+
+            </div>
+            <div class="col-md-4">
+                <div class="side-news-widget">
+                    <h4 class="section-title">Истории клубов</h4>
+                    <ul class="small-grid">
+                        {% for item in history_list %}
+                        <!--Row Start-->
+                        <li class="news">
+                            <div class="small-thumb">
+                              {% thumbnail item.image "90x90" crop="center" as im %}
+                                  <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt={{item}}>
+                              {% endthumbnail %}
+                            </div>
+                            <div class="news-txt">
+                                <ul class="meta-info">
+                                    <li><a href="#">{{item.author}}</a></li>
+                                    <li>{{item.born}}</li>
+                                </ul>
+                                <h6> <a href="{% url 'history' slug=item.slug %}">{{item}}</a> </h6>
+                            </div>
+                        </li>
+                        <!--Row End-->
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Tab post Grid Start-->
+{% endblock %}
