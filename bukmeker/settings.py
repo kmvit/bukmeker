@@ -113,6 +113,16 @@ USE_L10N = True
 
 USE_TZ = True
 
+TINYMCE_DEFAULT_CONFIG = {
+    'file_browser_callback': 'mce_filebrowser',
+    'plugins': "table,spellchecker,paste,searchreplace",
+    'theme': "advanced",
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
+    'width': "1000",
+    'height': "600",
+}
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
