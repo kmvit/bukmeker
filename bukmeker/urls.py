@@ -27,5 +27,8 @@ urlpatterns = [
     url(r'^forecasts/', include('forecasts.urls')),
     url(r'^histories/', include('histories.urls')),
     url(r'^articles/', include('articles.urls')),
+    url(r'^comments/', include('django_comments.urls')),
+    url(r'^accounts/', include('django_registration.backends.activation.urls')),
+    url(r'^accounts/', include('django.contrib.auth.urls')),
     path('', home, name='home'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

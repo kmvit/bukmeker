@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     'tinymce',
     'sorl.thumbnail',
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'histories',
     'authors',
     'game',
+    'django_comments',
 
 
 ]
@@ -55,7 +57,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'bukmeker.urls'
-
+SITE_ID = 1
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

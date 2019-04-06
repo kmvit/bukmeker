@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-wrapper">
+
+    <!-- Blog Full Start -->
+    <div class="blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+
+                    <!--Blog Post Start-->
+                    <div class="blog-post">
+                        <h3>Авторизация</h3>
+                        <p>Не зарегистрированы? <a href="{% url 'django_registration_register' %}">Пройдите</a> для регистрации</p>
+                        <div class="blog-content">
+                          <form method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit">Отправить</button>
+                          </form>
+                        </div>
+                    </div>
+                    <!--Blog Post End-->
+
+
+
+
+
+                </div>
+
+                {% include 'include/sidebar.html' %}
+
+            </div>
+        </div>
+    </div>
+    <!-- Blog Full End -->
+
+</div>
+{% endblock %}

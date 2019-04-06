@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static thumbnail %}
+{% load static thumbnail comments %}
 {% block bread %}
 <!--Inner Banner Start-->
 <div class="inner-banner">
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <!--Blog Post End-->
-
+                    <div class="blog-post">
                     <table width="100%">
                         <tr>
                             <td width="50%">
@@ -56,10 +56,46 @@
                     </table>
                     Рейтинг пользователя <a href="#">{{user}}</a>: {{user.author.user_raking}}
                     {{user_list}}
+                    </div>
+
+                    <!--Reviews Start-->
+                    <div class="post-reviews">
+                        <h4 class="section-title">Отзывы</h4>
+                        <div class="comments">
+                          {% get_comment_list for object as comment_list %}
+                            <ul>
+                              {% for comment in comment_list %}
+                               <li class="comment">
+                                  <div class="comm-post">
+                                  <div class="comm-txt"> <strong class="name">{{comment.user}}</strong> <span class="date">{{comment.submit_date}}</span>
+                                      <p>{{comment.comment}}</p>
+                                  </div>
+                                  </div>
+
+                              </li>
+                              {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <!--Reviews End-->
 
 
+                    <!--Reviews Form Start-->
+                    <h4 class="section-title">Написать отзыв</h4>
+                    <div class="review-form">
+                        {% if user.is_authenticated %}
+                        {% get_comment_form for object as form %}
+                        <div class="row">
+                        {% render_comment_form for object %}
+                        </div>
+                        {% else %}
+                          <p>Пожалуйста <a href="{% url 'login' %}">авторизуйтесь,</a> чтобы оставлять комментарии.</p>
+                        {% endif %}
+                    </div>
+                    <!--Reviews Form End-->
 
                 </div>
+
 
                 {% include 'include/sidebar.html' %}
 

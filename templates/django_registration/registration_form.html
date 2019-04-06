@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-wrapper">
+
+    <!-- Blog Full Start -->
+    <div class="blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+
+                    <!--Blog Post Start-->
+                    <div class="blog-post">
+
+                        <div class="blog-content">
+                        <h2>Регистрация</h2>
+                        <form method="post">
+                          {% csrf_token %}
+                          {% for field in form %}
+                            <p>
+                              {{ field.label_tag }}<br>
+                              {{ field }}
+                            
+                              {% for error in field.errors %}
+                                <p>{{ error }}</p>
+                              {% endfor %}
+                            </p>
+                          {% endfor %}
+                          <button type="submit">Отправить</button>
+                        </form>
+
+                        </div>
+                    </div>
+                    <!--Blog Post End-->
+
+
+
+
+
+                </div>
+
+                {% include 'include/sidebar.html' %}
+
+            </div>
+        </div>
+    </div>
+    <!-- Blog Full End -->
+
+</div>
+{% endblock %}

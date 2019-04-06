@@ -39,7 +39,11 @@
                         <li class="social"> <a href="#" class="fb"><i class="fa fa-facebook"></i></a> <a href="#" class="tw"><i class="fa fa-twitter"></i></a> <a href="#" class="ytp"><i class="fa fa-youtube-play"></i></a> <a href="#" class="vim"><i class="fa fa-vimeo"></i></a> <a href="#" class="gp"><i class="fa fa-google-plus"></i></a> </li>
 
                         <li>
-                            <a href="#" class="login-btn"> <i class="fa fa-user"></i> Войти</a>
+                          {% if user.is_authenticated %}
+                          <a class="login-btn"> <i class="fa fa-user"></i>{{user}}</a>
+                          {% else %}
+                          <a href="{% url 'login' %}" class="login-btn"> <i class="fa fa-user"></i> Войти</a>
+                          {% endif %}
                         </li>
                     </ul>
                 </div>
